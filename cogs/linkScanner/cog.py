@@ -2,8 +2,8 @@ import nextcord
 from nextcord.ext import commands
 import re
 
-xfix = "https://fxtwitter.com/"
-twtfix = "https://fixupx.com/"
+twtfix = "fxtwitter.com/"
+xfix = "fixupx.com/"
 
 class LinkScannerCog(commands.Cog, name="Link Scanner"):
     def __init__(self, bot: commands.Bot):
@@ -16,11 +16,14 @@ class LinkScannerCog(commands.Cog, name="Link Scanner"):
             if "fxtwitter.com/" not in message.content and "fixupx.com/" not in message.content:
                 # Avoid already fixed links.
                 if "twitter.com/" in message.content:
-                    new_msg = message.content.replace("twitter.com/", "fxtwitter.com/")
+                    new_msg = message.content.replace("twitter.com/", twtfix) + " - " + message.author.mention
                     await message.channel.send(new_msg)
+                    await message.delete()
+
                 elif "x.com/" in message.content:
-                    new_msg = message.content.replace("x.com/", "fixupx.com/")
+                    new_msg = message.content.replace("x.com/", xfix) + " - " + message.author.mention
                     await message.channel.send(new_msg)
+                    await message.delete()
 
 def setup(bot):
     bot.add_cog(LinkScannerCog(bot))
