@@ -1,2 +1,2 @@
 # FIXLINX
-Fixes Twitter/X links automatically in chat.
+Fixes Twitter/X/Tik Tok links automatically in chat.
