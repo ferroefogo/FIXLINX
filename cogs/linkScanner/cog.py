@@ -17,7 +17,7 @@ class LinkScannerCog(commands.Cog, name="Link Scanner"):
     async def on_message(self, message: nextcord.Message):
         if not message.author.bot:
             # Avoid infinite loop.
-            if "fxtwitter.com/" not in message.content and "fixupx.com/" not in message.content:
+            if "fxtwitter.com/" not in message.content and "fixupx.com/" not in message.content and "vxtiktok.com/" not in message.content:
                 # Avoid already fixed links.
                 if "twitter.com/" in message.content:
                     new_msg = message.content.replace("twitter.com/", twtfix) + " - " + message.author.mention
@@ -29,9 +29,7 @@ class LinkScannerCog(commands.Cog, name="Link Scanner"):
                     await message.channel.send(new_msg)
                     await message.delete()
 
-            elif "vxtiktok.com/" not in message.content:
-                # Avoid already fixed links.
-                if "tiktok.com/" in message.content:
+                elif "tiktok.com/" in message.content:
                     new_msg = message.content.replace("tiktok.com/", tiktokfix) + " - " + message.author.mention
                     await message.channel.send(new_msg)
                     await message.delete()
