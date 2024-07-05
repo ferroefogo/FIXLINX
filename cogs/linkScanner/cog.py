@@ -1,9 +1,13 @@
 import nextcord
 from nextcord.ext import commands
-import re
 
+# Twitter/X fix link strings
 twtfix = "fxtwitter.com/"
 xfix = "fixupx.com/"
+
+# TikTok fix link string
+tiktokfix = "fxtiktok.com/"
+
 
 class LinkScannerCog(commands.Cog, name="Link Scanner"):
     def __init__(self, bot: commands.Bot):
@@ -22,6 +26,13 @@ class LinkScannerCog(commands.Cog, name="Link Scanner"):
 
                 elif "x.com/" in message.content:
                     new_msg = message.content.replace("x.com/", xfix) + " - " + message.author.mention
+                    await message.channel.send(new_msg)
+                    await message.delete()
+
+            elif "fxtiktok.com/" not in message.content:
+                # Avoid already fixed links.
+                if "tiktok.com/" in message.content:
+                    new_msg = message.content.replace("tiktok.com/", tiktokfix) + " - " + message.author.mention
                     await message.channel.send(new_msg)
                     await message.delete()
 
