@@ -6,7 +6,7 @@ twtfix = "fxtwitter.com/"
 xfix = "fixupx.com/"
 
 # TikTok fix link string
-tiktokfix = "fxtiktok.com/"
+tiktokfix = "vxtiktok.com/"
 
 
 class LinkScannerCog(commands.Cog, name="Link Scanner"):
@@ -29,7 +29,7 @@ class LinkScannerCog(commands.Cog, name="Link Scanner"):
                     await message.channel.send(new_msg)
                     await message.delete()
 
-            elif "fxtiktok.com/" not in message.content:
+            elif "vxtiktok.com/" not in message.content:
                 # Avoid already fixed links.
                 if "tiktok.com/" in message.content:
                     new_msg = message.content.replace("tiktok.com/", tiktokfix) + " - " + message.author.mention
